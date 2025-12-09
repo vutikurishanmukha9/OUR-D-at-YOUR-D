@@ -1,5 +1,22 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+*.local
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,41 +24,63 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Dependencies
-node_modules
-client/node_modules
-server/node_modules
-
-# Build outputs
-dist
-dist-ssr
-client/dist
-server/dist
-*.local
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-server/.env
-client/.env
-
 # Editor directories and files
-.vscode/*
+.vscode/
 !.vscode/extensions.json
-.idea
-.DS_Store
+!.vscode/settings.json
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.swp
+*.swo
 
-# Bolt AI (removed)
-.bolt
-
-# OS files
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Desktop.ini
 
 # Testing
-coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# TypeScript
+*.tsbuildinfo
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Bolt AI (deprecated)
+.bolt/
+
+# Debug
+.eslintcache
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache
+.npm/
+.cache/
+
+# Optional REPL history
+.node_repl_history
+
+# Yarn
+.yarn-integrity
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
