@@ -9,6 +9,7 @@ import authRoutes from './routes/auth';
 import doctorRoutes from './routes/doctors';
 import appointmentRoutes from './routes/appointments';
 import aiRoutes from './routes/ai';
+import medicineRoutes from './routes/medicines';
 
 // Load environment variables
 dotenv.config();
@@ -50,6 +51,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/doctors', doctorRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/ai', aiRoutes);
+app.use('/api/medicines', medicineRoutes);
 
 // Error handling
 app.use(notFound);

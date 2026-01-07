@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import {
-  Stethoscope, Menu, MessageCircle, Send,
-  LogOut, Moon, Sun, Heart, Brain, Pill, AlertTriangle,
+  Stethoscope, Menu, Send,
+  LogOut, Moon, Sun, Heart, Brain, AlertTriangle,
   Home, Phone, Calendar, Clock, Star, Shield, Zap,
   ArrowRight, Activity, Ambulance, Sparkles, Users, MapPin,
-  Video, ChevronRight
+  Video, ChevronRight, Pill
 } from 'lucide-react';
+import MedicinesPage from './pages/MedicinesPage';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -21,7 +22,7 @@ interface User { id: string; name: string; email: string; phone: string; }
 interface Doctor { id: string; name: string; specialty: string; rating: number; experience: string; image: string; available: boolean; consultationFee?: number; }
 interface Medicine { name: string; dosage: string; timing: string; duration: string; }
 
-type Page = 'home' | 'about' | 'book-doctor' | 'ai-assistant' | 'contact';
+type Page = 'home' | 'about' | 'book-doctor' | 'ai-assistant' | 'contact' | 'medicines';
 
 const sampleDoctors: Doctor[] = [
   { id: '1', name: 'Dr. Priya Sharma', specialty: 'General Physician', rating: 4.8, experience: '8 years', image: 'https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=300', available: true, consultationFee: 500 },
@@ -97,7 +98,7 @@ function App() {
           </div>
 
           <nav className="hidden md:flex items-center gap-6">
-            {(['home', 'book-doctor', 'ai-assistant', 'about', 'contact'] as Page[]).map((page) => (
+            {(['home', 'book-doctor', 'medicines', 'ai-assistant', 'about', 'contact'] as Page[]).map((page) => (
               <button key={page} onClick={() => setCurrentPage(page)}
                 className={`text-sm font-medium transition-colors hover:text-primary ${currentPage === page ? 'text-primary' : 'text-muted-foreground'}`}>
                 {page.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
@@ -143,6 +144,7 @@ function App() {
         {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} handleGuestAccess={handleGuestAccess} />}
         {currentPage === 'about' && <AboutPage />}
         {currentPage === 'book-doctor' && <BookDoctorPage doctors={sampleDoctors} user={user} setShowLogin={setShowLogin} />}
+        {currentPage === 'medicines' && <MedicinesPage />}
         {currentPage === 'ai-assistant' && <AIAssistantPage symptoms={symptoms} setSymptoms={setSymptoms} isAnalyzing={isAnalyzing} analyzeSymptoms={analyzeSymptoms} showResults={showResults} currentPrescription={currentPrescription} isGuestMode={isGuestMode} setShowLogin={setShowLogin} />}
         {currentPage === 'contact' && <ContactPage />}
       </main>
@@ -423,7 +425,7 @@ function ContactPage() {
 }
 
 function LoginForm({ onLogin, onSignup }: { onLogin: (email: string) => void; onSignup: (name: string, email: string, phone: string) => void }) {
-  const [isSignup, setIsSignup] = useState(false);
+  const [, setIsSignup] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

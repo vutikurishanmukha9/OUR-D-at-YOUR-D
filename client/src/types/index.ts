@@ -27,6 +27,19 @@ export interface Medicine {
     duration: string;
 }
 
+export interface CatalogMedicine {
+    _id: string;
+    name: string;
+    price: number;
+    manufacturer: string;
+    type: string;
+    packSize: string;
+    composition: string;
+    description: string;
+    sideEffects: string[];
+    isDiscontinued: boolean;
+}
+
 export interface Consultation {
     _id: string;
     symptoms: string;

@@ -1,4 +1,4 @@
-import { User, Doctor, Appointment, Consultation, SymptomAnalysisResult, AuthResponse, ApiResponse } from '../types';
+import { User, Doctor, Appointment, Consultation, SymptomAnalysisResult, AuthResponse, ApiResponse, CatalogMedicine } from '../types';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
@@ -191,6 +191,18 @@ export const aiApi = {
 
     checkHealth: async (): Promise<ApiResponse<{ status: string; geminiConnected: boolean }>> => {
         return fetchApi<{ status: string; geminiConnected: boolean }>('/ai/health');
+    }
+};
+
+// ============ MEDICINES API ============
+
+export const medicinesApi = {
+    search: async (query: string, page: number = 1): Promise<ApiResponse<{ medicines: CatalogMedicine[]; currentPage: number; totalPages: number; totalMedicines: number }>> => {
+        return fetchApi<{ medicines: CatalogMedicine[]; currentPage: number; totalPages: number; totalMedicines: number }>(`/medicines?query=${encodeURIComponent(query)}&page=${page}`);
+    },
+
+    getById: async (id: string): Promise<ApiResponse<CatalogMedicine>> => {
+        return fetchApi<CatalogMedicine>(`/medicines/${id}`);
     }
 };
 
